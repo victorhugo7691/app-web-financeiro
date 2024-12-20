@@ -1,0 +1,8 @@
+.my-background {
+  background-image: url('../../public/imagem-de-fundo.jpg');
+  background-size: cover; /* Ajusta a imagem para cobrir o elemento */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição */
+  height: 100vh; /* Altura de 100% da viewport */
+  width: 100%; /* Largura de 100% */
+}

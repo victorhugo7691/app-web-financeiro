@@ -1,0 +1,29 @@
+<div class="form-container">
+
+  <mat-card class="mensagem" appearance="outlined">
+    <h2> Bem vindo ao banco com maior rendimento financeiro do Brasil </h2>
+  </mat-card>
+
+
+  <mat-card class="login-form" appearance="outlined">
+    <div class="login">
+      <h3>
+        Login
+      </h3>
+      <form (ngSubmit)="login()">
+        <div>
+          <label for="accountNumber">Conta:</label>
+          <input matInput type="text" id="accountNumber" [(ngModel)]="accountNumber" placeholder="Número da Conta" name="accountNumber" required>
+          <br>
+          <label for="password">Senha:</label>
+          <input matInput type="password" id="password" [(ngModel)]="password" placeholder="******" name="password" required>
+        </div>
+
+        <button mat-flat-button type="submit">Entrar</button>
+        <button mat-flat-button type="submit" [routerLink]="['/cadastro']">Criar Conta</button>
+      </form>
+    </div>
+  </mat-card>
+
+</div>
+
