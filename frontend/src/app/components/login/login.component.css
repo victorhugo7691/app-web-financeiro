@@ -10,7 +10,7 @@
   width: 500px;   /* Define a largura da div */
   height: 250px;  /* Define a altura da div */
   background-color: lightblue; /* Apenas para visualização */
-  opacity: 0.8;
+  opacity: 0.90;
 }
 
 h2{
@@ -35,7 +35,7 @@ h2{
   width: 500px;   /* Define a largura da div */
   height: 250px;  /* Define a altura da div */
   background-color: lightblue; /* Apenas para visualização */
-  opacity: 0.8;
+  opacity: 0.90;
   position: relative;
 }
 
@@ -44,7 +44,7 @@ label{
 }
 
 button{
-  margin: 7px;
+  margin: 8px 8px 8px 0;
   width: 40%;
 }
 
