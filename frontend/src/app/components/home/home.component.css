@@ -16,14 +16,30 @@
 
 .tela-principal {
   width: 100%; /* Faz o card ocupar 100% da largura */
-  height: 100%; /* Faz o card ocupar 100% da altura */
+  height: 85%; /* Faz o card ocupar 100% da altura */
   max-width: none; /* Remove limites padrão */
   max-height: none; /* Remove limites padrão */
-  opacity: 70%;
-  background-color: lightblue;
+  background-color: rgba(173, 216, 230, 0.7);
+  display: flex;
 }
 
 .actions {
   display: flex;
   gap: 10px;
+}
+
+mat-slide-toggle{
+  width: 20px;
+}
+
+mat-card{
+  width: 50%;
+  margin: 20px;
+  opacity: 1; /* Sobrescreve a opacidade do pai */
+  background-color: white; /* Garante que o fundo seja sólido */
+  z-index: 1; /* Garante que ele esteja acima do fundo */
+}
+
+mat-slide-toggle{
+  margin-left: 50%;
 }
