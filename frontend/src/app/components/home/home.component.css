@@ -1,0 +1,29 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  height: 100vh; /* Ocupa 100% da altura da tela */
+}
+
+.header {
+  text-align: center;
+  background-color: rgb(219, 215, 215);
+  color: black;
+  width: 100%;
+  opacity: 98%;
+}
+
+.tela-principal {
+  width: 100%; /* Faz o card ocupar 100% da largura */
+  height: 100%; /* Faz o card ocupar 100% da altura */
+  max-width: none; /* Remove limites padrão */
+  max-height: none; /* Remove limites padrão */
+  opacity: 70%;
+  background-color: lightblue;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
