@@ -1,41 +1,66 @@
 <div class="main-container">
-  <!-- Header
-  <header class="header">
-    <h1>Bem-vindo, {{ nomeDoUsuario }}</h1>
-  </header>
--->
-  <!-- Card de Saldo -->
+
    <div class="tela-principal">
 
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Saldo Bancário</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <h2>R$ {{ saldo }}</h2>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Saldo Bancário</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <h2>R$ {{ saldo }}</h2>
-      </mat-card-content>
-    </mat-card>
-
     <mat-card class="card-informacoes">
+      <mat-card-header>
+        <mat-card-title class="nome">Olá </mat-card-title>
+        <!--<p>{{ cliente.nome }}</p>-->
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-content>
+          <mat-card class="card-funcionalidades" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Funcionalidades</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Realize já uma atividade</p>
+              <div class="botoes-funcionalidades">
+                <button mat-flat-button>Débito</button>
+                <button mat-flat-button>Crédito</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+        </mat-card-content>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card-saldo">
       <mat-card-header>
         <mat-slide-toggle color="blue" [(ngModel)]="isOculto">Ocultar dados</mat-slide-toggle>
         <mat-card-title>Saldo Bancário</mat-card-title>
       </mat-card-header>
+
       <mat-card-content>
-        <h2>R$ {{ saldo }}</h2>
+        <h3>R$ {{ saldo }}</h3>
+
+        <p>Previa de transações realizadas</p>
+        <table mat-table [dataSource]="transacoes">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataEHora">
+            <th mat-header-cell *matHeaderCellDef> Data e hora </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataEHora}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef> Valor </th>
+            <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
       </mat-card-content>
-
-
-
 
     </mat-card>
   </div>

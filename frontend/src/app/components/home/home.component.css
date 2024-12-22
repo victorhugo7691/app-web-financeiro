@@ -33,13 +33,42 @@ mat-slide-toggle{
 }
 
 mat-card{
-  width: 50%;
-  margin: 20px;
   opacity: 1; /* Sobrescreve a opacidade do pai */
   background-color: white; /* Garante que o fundo seja sólido */
   z-index: 1; /* Garante que ele esteja acima do fundo */
 }
 
 mat-slide-toggle{
-  margin-left: 50%;
+  margin-left: 33%;
+}
+
+.card-saldo{
+  width: 30%;
+  margin: 10px;
+  background-image: url('../../../../public/dinheiro.jpg');
+}
+
+.card-informacoes{
+  width: 70%;
+  margin: 10px;
+  background-image: url('../../../../public/dinheiro.jpg');
+  background-size: cover; /* Faz a imagem cobrir todo o card */
+  background-repeat: no-repeat; /* Evita que a imagem seja repetida */
+  background-position: center; /* Centraliza a imagem no card */
+}
+
+.demo-table {
+  width: 100%;
+}
+
+.card-funcionalidades{
+  max-width: 95%;
+}
+
+.example-card-footer {
+  padding: 16px;
+}
+
+.nome{
+  margin-left: 20px;
 }
