@@ -1,16 +1,29 @@
-# Usando a imagem base do OpenJDK 17 slim
+# Imagem base para construção
+FROM maven:3.9.6-openjdk-17 AS builder
+
+# Definindo o diretório de trabalho para a construção
+WORKDIR /app
+
+# Copiando o pom.xml e os arquivos de configuração do Maven
+COPY pom.xml .
+
+# Baixando as dependências para cache
+RUN mvn dependency:go-offline
+
+# Copiando o restante do código para o container
+COPY . .
+
+# Construindo o JAR da aplicação
+RUN mvn clean package -DskipTests
+
+# Imagem final para execução
 FROM openjdk:17-jdk-slim
 
 # Definindo o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copiando o JAR da aplicação para o diretório de trabalho
-COPY target/*.jar app.jar
-
-# Definindo variável de ambiente para a URL
-ENV DBURL=jdbc:postgresql://dpg-cthpdj3qf0us73dmjkfg-a.oregon-postgres.render.com:5432/db_financeiro
-ENV DBUSER=app_financeiro
-ENV DBPASSWORD=2vFqDEWPB8MNFz7QPCQ4GZlcpZb40PLb
+# Copiando o JAR gerado no estágio anterior
+COPY --from=builder /app/target/*.jar app.jar
 
 # Expondo a porta 8080 (porta padrão do Spring Boot)
 EXPOSE 8080
