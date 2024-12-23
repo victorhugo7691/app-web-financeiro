@@ -38,19 +38,11 @@ h2{
   opacity: 0.90;
   position: relative;
 }
-.mat-form-field {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-label{
-  padding-top: 10px;
-}
 
 button{
-  margin: 8px 8px 8px 0;
+  margin: 8px;
   width: 40%;
 }
-
 input{
   margin: 3px;
 }
