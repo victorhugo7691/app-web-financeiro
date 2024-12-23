@@ -1,5 +1,5 @@
 # Imagem base para construção
-FROM maven:3.9.6-openjdk-17 AS builder
+FROM maven:3.9.5-eclipse-temurin-17 AS builder
 
 # Definindo o diretório de trabalho para a construção
 WORKDIR /app
