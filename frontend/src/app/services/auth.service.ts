@@ -9,7 +9,7 @@ import { Conta } from '../models/conta';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8081/login'; // URL do backend para login
+  private apiUrl = 'http://localhost:8081/api/login'; // URL do backend para login
 
   constructor(private http: HttpClient) {}
 

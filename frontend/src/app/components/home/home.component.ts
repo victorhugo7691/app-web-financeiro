@@ -2,17 +2,18 @@ import { Transacao } from './../../models/transacao';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule,
-} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule,_MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
 import { Cliente } from '../../models/cliente';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatCardModule, MatSlideToggleModule, FormsModule, MatTableModule, MatChipsModule, MatButtonModule],
+  imports: [MatCardModule, MatSlideToggleModule, FormsModule, MatTableModule, MatChipsModule, MatButtonModule, MatFormFieldModule, MatInputModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -67,6 +68,27 @@ export class HomeComponent {
     valor: "",
     dataEHora: "",
     tipo: ""
+  }
+  creditVisible: boolean = false;
+  debitVisible: boolean = false;
+  valorDebito: number = 0;
+  valorCredito: number = 0;
+
+  debitar() {
+    if (this.debitVisible) {
+      this.debitVisible = false;
+    } else {
+      this.debitVisible = true;
+      this.creditVisible = false;
+    }
+  }
+  creditar() {
+    if (this.creditVisible) {
+      this.creditVisible = false;
+    } else {
+      this.creditVisible = true;
+      this.debitVisible = false;
+    }
   }
 
 }

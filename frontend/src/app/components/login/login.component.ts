@@ -25,14 +25,16 @@ export class LoginComponent {
 
   login(): void {
 
-    this.authService.login(this.user).subscribe({
-      next: (response: Conta) => { // Especifica o tipo de resposta como Conta
-        localStorage.setItem('clienteId', response.clienteId.toString()); // Armazena o clienteId no localStorage
-        this.router.navigate(['/home']); // Redireciona para a página home
-      },
-      error: (err) => {
-        alert('Falha na tentativa de login, verifique o número da conta e senha!');
-      }
-    });
+    try {
+      this.authService.login(this.user).subscribe({
+        next: (response: Conta) => { // Especifica o tipo de resposta como Conta
+          localStorage.setItem('clienteId', response.clienteId.toString()); // Armazena o clienteId no localStorage
+          this.router.navigate(['/home']); // Redireciona para a página home
+        }
+      });
+
+    } catch(error: any) {
+      console.log('Falha na tentativa de login, verifique o número da conta e senha!' + error.message);
+    }
   }
 }

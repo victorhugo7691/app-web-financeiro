@@ -16,16 +16,37 @@
             <mat-card-content>
               <p>Realize já uma atividade</p>
               <div class="botoes-funcionalidades">
-                <button mat-flat-button>Débito</button>
-                <button mat-flat-button>Crédito</button>
+                <button mat-flat-button (click)="debitar()" class="transacaoButton">Débito</button>
+                <button mat-flat-button class="transacaoButton" (click)="creditar()" >Crédito</button>
               </div>
             </mat-card-content>
+            @if (debitVisible) {
+              <section class="secaoDebito">
+                <form>
+                  <mat-form-field>
+                    <mat-label>Valor</mat-label>
+                    <input matInput type="number" name="debitValue" [(ngModel)]="valorDebito">
+                  </mat-form-field>
+                  <button type="submit" mat-flat-button>Debitar</button>
+                </form>
+              </section>
+            }
+            @if (creditVisible) {
+              <section class="secaoCredito">
+                <form>
+                  <mat-form-field>
+                    <mat-label>Valor</mat-label>
+                    <input matInput type="number" name="creditValue" [(ngModel)]="valorCredito">
+                  </mat-form-field>
+                  <button type="submit" mat-flat-button>Creditar</button>
+                </form>
+              </section>
+            }
           </mat-card>
 
         </mat-card-content>
       </mat-card-content>
     </mat-card>
-
     <mat-card class="card-saldo">
       <mat-card-header>
         <mat-slide-toggle color="blue" [(ngModel)]="isOculto">Ocultar dados</mat-slide-toggle>
@@ -60,6 +81,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <button mat-flat-button id="extratoFull" routerLink="/extrato" >Extrato Completo</button>
       </mat-card-content>
 
     </mat-card>

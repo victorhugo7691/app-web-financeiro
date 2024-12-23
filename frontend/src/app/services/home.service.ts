@@ -11,7 +11,7 @@ export class HomeService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  baseUrl = "http://localhost:8081/home"
+  baseUrl = "http://localhost:8081/api/home"
 
   findContaByClientId(id: string): Observable<Conta> {
     const url = `${this.baseUrl}/${id}`;

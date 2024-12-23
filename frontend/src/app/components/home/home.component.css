@@ -55,11 +55,22 @@ mat-slide-toggle{
   background-repeat: no-repeat; /* Evita que a imagem seja repetida */
   background-position: center; /* Centraliza a imagem no card */
 }
-
+.botoes-funcionalidades {
+  button {
+    background-color: #005cbb;
+    color: white;
+    margin: 5px;
+    margin-left: 0;
+    border-radius: 20px;
+  }
+}
 .demo-table {
   width: 100%;
 }
-
+.transacaoButton {
+  background-color: #005cbb;
+  color: white;
+}
 .card-funcionalidades{
   max-width: 95%;
 }
@@ -70,4 +81,28 @@ mat-slide-toggle{
 
 .nome{
   margin-left: 20px;
+}
+.secaoDebito {
+  margin-top: 20px;
+  margin-left: 20px;
+  button {
+    margin-left: 20px;
+    background-color: rgb(255, 98, 98);
+    color: white;
+    font-weight: bold;
+  }
+}
+#extratoFull {
+  float: right;
+  margin-top: 20px;
+}
+.secaoCredito {
+  margin-top: 20px;
+  margin-left: 20px;
+  button {
+    margin-left: 20px;
+    background-color: rgb(98, 255, 98);
+    color: black;
+    font-weight: bold;
+  }
 }
