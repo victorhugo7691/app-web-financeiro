@@ -4,15 +4,15 @@ FROM node:18 AS frontend-builder
 # Definindo o diretório de trabalho para o front-end
 WORKDIR /frontend
 
-# Copiando os arquivos do front-end
+# Copiando o package.json e o package-lock.json para o container
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm install
 
-# Copiando o código do front-end
+# Copiando o restante dos arquivos do front-end
 COPY frontend/ ./
 
-# Build do front-end (Angular)
-RUN npm run build --prod
+# Rodando o build do Angular para gerar a pasta dist
+RUN npm run build
 
 # Estágio 2: Build do Back-End (Spring Boot)
 FROM maven:3.9.5-eclipse-temurin-17 AS backend-builder
@@ -41,8 +41,8 @@ RUN apt-get update && apt-get install -y nginx
 # Copiando o JAR gerado do back-end
 COPY --from=backend-builder /app/target/*.jar /app/app.jar
 
-# Copiando os arquivos do front-end para o Nginx
-COPY --from=frontend-builder /frontend/dist/your-angular-app /usr/share/nginx/html
+# Copiando os arquivos do front-end (agora gerados pelo build do Angular)
+COPY --from=frontend-builder /frontend/dist/[nome-do-projeto-angular] /usr/share/nginx/html
 
 # Expondo a porta 8081 (para o Spring Boot) e 80 (para o Nginx)
 EXPOSE 8081 80
