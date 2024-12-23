@@ -1,4 +1,4 @@
-# Estágio 1: Build do Front-End (Angular)
+# Etapa 1: Build do Front-End (Angular)
 FROM node:18 AS frontend-builder
 
 # Definindo o diretório de trabalho para o front-end
@@ -14,7 +14,7 @@ COPY frontend/ ./
 # Rodando o build do Angular para gerar a pasta dist
 RUN npm run build
 
-# Estágio 2: Build do Back-End (Spring Boot)
+# Etapa 2: Build do Back-End (Spring Boot)
 FROM maven:3.9.5-eclipse-temurin-17 AS backend-builder
 
 # Definindo o diretório de trabalho para o back-end
@@ -32,11 +32,14 @@ COPY backend/src ./src
 # Build do JAR do back-end (Spring Boot)
 RUN mvn clean package -DskipTests
 
-# Estágio Final: Servindo o Front-End com Nginx e o Back-End com Spring Boot
+# Etapa Final: Servindo o Front-End com Nginx e o Back-End com Spring Boot
 FROM openjdk:17-jdk-slim AS final
 
 # Instalando o Nginx para servir o Front-End
 RUN apt-get update && apt-get install -y nginx
+
+# Copiando o arquivo de configuração do Nginx
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Copiando o JAR gerado do back-end
 COPY --from=backend-builder /app/target/*.jar /app/app.jar
