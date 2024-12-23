@@ -39,7 +39,7 @@ FROM openjdk:17-jdk-slim AS final
 RUN apt-get update && apt-get install -y nginx
 
 # Copiando o arquivo de configuração do Nginx
-#COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Copiando o JAR gerado do back-end
 COPY --from=backend-builder /app/target/*.jar /app/app.jar
