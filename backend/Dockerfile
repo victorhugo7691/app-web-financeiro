@@ -25,8 +25,8 @@ WORKDIR /app
 # Copiando o JAR gerado no estágio anterior
 COPY --from=builder /app/target/*.jar app.jar
 
-# Expondo a porta 8080 (porta padrão do Spring Boot)
-EXPOSE 8080
+# Expondo a porta 8081 (porta padrão do Spring Boot)
+EXPOSE 8081
 
 # Comando para rodar a aplicação Spring Boot
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
