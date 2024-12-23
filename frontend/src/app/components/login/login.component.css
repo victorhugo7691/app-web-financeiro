@@ -38,7 +38,10 @@ h2{
   opacity: 0.90;
   position: relative;
 }
-
+.mat-form-field {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 label{
   padding-top: 10px;
 }

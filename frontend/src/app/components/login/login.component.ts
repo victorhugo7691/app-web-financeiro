@@ -16,18 +16,16 @@ import {MatInputModule} from '@angular/material/input';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  accountNumber!: number;
-  password: string = '';
+  user: Login = {
+    numeroDaConta: 0,
+    senha: ''
+  }
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
-    const loginData: Login = {
-      numeroDaConta: this.accountNumber,
-      senha: this.password
-    };
 
-    this.authService.login(loginData).subscribe({
+    this.authService.login(this.user).subscribe({
       next: (response: Conta) => { // Especifica o tipo de resposta como Conta
         localStorage.setItem('clienteId', response.clienteId.toString()); // Armazena o clienteId no localStorage
         this.router.navigate(['/home']); // Redireciona para a página home

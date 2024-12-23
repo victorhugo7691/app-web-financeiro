@@ -13,10 +13,11 @@
         <div>
           <mat-form-field>
             <mat-label>Número da conta</mat-label>
-            <input matInput type="text" id="accountNumber" [(ngModel)]="accountNumber" placeholder="Número da Conta" name="accountNumber" required>
-            <br>
-            <label for="password">Senha:</label>
-            <input matInput type="password" id="password" [(ngModel)]="password" placeholder="******" name="password" required>
+            <input matInput type="number" id="accountNumber" [(ngModel)]="user.numeroDaConta" placeholder="Número da Conta" name="accountNumber" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" id="password" [(ngModel)]="user.senha" placeholder="******" name="password" required>
           </mat-form-field>
         </div>
 
