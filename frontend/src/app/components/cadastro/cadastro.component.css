@@ -1,33 +1,33 @@
-.example-container mat-form-field + mat-form-field {
-  margin-left: 8px;
+section {
+  width: 80%;
+  min-width: 350px;
+  height: 70%;
+  margin: auto;
+  background-color: white;
+  border-radius: 15px;
 }
-
-.example-container mat-form-field {
-  width: 220px;
+h1 {
+  text-align: left;
+  margin-left: 20px;
+  padding-top: 20px;
 }
-
-.example-container form {
-  margin-bottom: 20px;
+form {
+  width: 100%;
+  min-width: 300px;
+  max-width: 1500px;
+  margin: auto;
+  button {
+    background-color: #005cbb;
+    color: white;
+    float: right;
+    margin-right: 10px;
+  }
 }
-
-.example-container form > * {
-  margin: 12px 0;
+hr {
+  border-color: rgba(0, 0, 0, 0.2);
 }
-
-.example-container .mat-radio-button {
-  margin: 0 12px;
-}
-
-.example-form-fields {
-  display: flex;
-  align-items: flex-start;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  height: 90%; /* Ocupa 100% da altura da tela */
+mat-form-field {
+  display: block;
+  margin: auto;
   width: 90%;
 }

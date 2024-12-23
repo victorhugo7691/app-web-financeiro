@@ -1,42 +1,61 @@
-<div class="main-container">
-
-  <div class="tela-cadastro">
-
-   <mat-card class="card-formulario">
-     <mat-card-header>
-       <mat-card-title class="nome">Cadastro </mat-card-title>
-     </mat-card-header>
-     <mat-card-content>
-
-
-
-<div>
-  <div class="example-container">
-    <form >
-      <div class="example-form-fields">
-        <mat-form-field >
-          <input matInput placeholder="Simple placeholder" required />
-        </mat-form-field>
-
-        <mat-form-field >
-          <mat-label>Both a label and a placeholder</mat-label>
-          <input matInput placeholder="Simple placeholder" />
-        </mat-form-field>
-
-        <mat-form-field >
-          <mat-select required>
-            <mat-option>-- None --</mat-option>
-            <mat-option value="option">Option</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </form>
-  </div>
-
-</div>
-     </mat-card-content>
-   </mat-card>
-
- </div>
-</div>
-
+<section>
+  <h1>Cadastro</h1>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <mat-form-field>
+      <mat-label>Escreva seu nome</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Nome Completo"
+        required
+        name="nome"
+        id="nome"
+        autocomplete="on"
+        [(ngModel)]="cadastro.nomeDoCliente"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Digite sua idade</mat-label>
+      <input type="number" matInput placeholder="idade" name="idade" required id="idade" [(ngModel)]="cadastro.idade"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Escreva seu email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="email"
+          required
+          name="email"
+          id="email"
+          autocomplete="on"
+          [(ngModel)]="cadastro.email"
+        />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Digite nº de conta</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="nº conta"
+          required
+          name="conta"
+          id="conta"
+          [(ngModel)]="cadastro.numeroDaConta"
+        />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Escreva a senha</mat-label>
+        <input
+          matInput
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          required
+          id="senha"
+          [(ngModel)]="cadastro.senha"
+        />
+    </mat-form-field>
+    <hr>
+    <button mat-flat-button type="submit" [disabled]="form.form.invalid">Enviar</button>
+  </form>
+</section>

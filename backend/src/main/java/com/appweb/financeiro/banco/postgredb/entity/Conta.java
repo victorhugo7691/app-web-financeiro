@@ -35,7 +35,7 @@ public class Conta implements Serializable {
 	@Column(nullable = false)
 	private ESituacaoDaConta situacao;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Float saldo;
 
 	public Cliente getCliente() {
