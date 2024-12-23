@@ -5,7 +5,7 @@ FROM maven:3.9.5-eclipse-temurin-17 AS builder
 WORKDIR /app
 
 # Copiando o pom.xml e os arquivos de configuração do Maven
-COPY pom.xml .
+COPY ../pom.xml .
 
 # Baixando as dependências para cache
 RUN mvn dependency:go-offline
