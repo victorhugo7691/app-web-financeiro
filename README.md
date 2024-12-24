@@ -11,7 +11,6 @@ DB_PASSWORD=2vFqDEWPB8MNFz7QPCQ4GZlcpZb40PLb
 DB_PORT=5432
 DB_USER=app_financeiro
 
-
 Diagrama de classes
 
 <img src="./img/uml_financeiro.svg">
