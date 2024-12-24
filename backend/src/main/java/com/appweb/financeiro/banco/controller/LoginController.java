@@ -3,7 +3,7 @@ package com.appweb.financeiro.banco.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,7 @@ import com.appweb.financeiro.banco.postgredb.service.interfaces.ILoginService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -25,7 +25,7 @@ public class LoginController {
 		this.loginService = loginService;
 	}
 
-	@GetMapping
+	@PostMapping
 	public ResponseEntity<ContaDTO> realizarLogin(@RequestBody @Valid LoginInputDTO login) {
 		ContaDTO conta = this.loginService.realizarLogin(login);
 

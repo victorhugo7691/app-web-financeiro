@@ -9,12 +9,12 @@ import { Conta } from '../models/conta';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8081/api/login'; // URL do backend para login
+  private apiUrl = 'http://localhost:8081/api'; // URL do backend para login
 
   constructor(private http: HttpClient) {}
 
   login(login: Login): Observable<Conta> {
-    return this.http.post<Conta>(this.apiUrl, login);  // Envia a requisição para o backend
+    return this.http.post<Conta>(`${this.apiUrl}/login`, login);  // Envia a requisição para o backend
   }
 
   isLoggedIn(): boolean {

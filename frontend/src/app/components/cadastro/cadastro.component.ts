@@ -1,3 +1,4 @@
+import { CadastroService } from './../../services/cadastro.service';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import { CadastroCliente } from '../../models/cadastro-cliente';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatChipsModule,
     MatButtonModule,
     MatInputModule,
+    RouterLink,
   ],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css',
@@ -33,14 +36,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class CadastroComponent {
   cadastro: CadastroCliente = {
     nomeDoCliente: '',
-    idade: 0,
+    idade: null,
     email: '',
-    numeroDaConta: 0,
+    numeroDaConta: null,
     senha: ''
   }
+
+  constructor(private cadastroService: CadastroService, private router: Router) { }
+
   async onSubmit() {
     try {
-      console.log(this.cadastro);
+      this.cadastroService.save(this.cadastro);
+      this.router.navigate(['/login']);
     } catch(error: any) {
       console.error(error.message);
     }

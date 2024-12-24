@@ -10,12 +10,13 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "home",
+    path: "home/:id",
     canActivate: [AuthGuard],
-    component: HomeComponent
+    component: HomeComponent,
+
   },
   {
-    path: "extrato",
+    path: "extrato/:id/:cliente",
     canActivate: [AuthGuard],
     component: ExtratoComponent
   },

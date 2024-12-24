@@ -1,3 +1,4 @@
+
 import { Transacao } from './../../models/transacao';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,57 +10,70 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HomeService } from '../../services/home.service';
+import { Conta } from '../../models/conta';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../../auth.interceptor';
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [MatCardModule, MatSlideToggleModule, FormsModule, MatTableModule, MatChipsModule, MatButtonModule, MatFormFieldModule, MatInputModule, RouterLink],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  transacoes: Transacao[] = [
-    {id: '01', dataEHora: '10:30', valor: 10.0, tipo: 'credito', contaId: '000092-6'},
-    {id: '02', dataEHora: '12:30', valor: 5.0, tipo: 'debito', contaId: '000092-6'},
-    {id: '03', dataEHora: '15:30', valor: 2.0, tipo: 'debito', contaId: '000092-6'},
-    {id: '04', dataEHora: '16:30', valor: 3.0, tipo: 'credito', contaId: '000092-6'}
-  ];
+  transacoes!: Transacao[];
 
-  saldo!: number;
+  saldo: number = 0;
   isOculto: boolean = true;
   cliente!: Cliente;
+  conta!: Conta;
 
-  transacao: Transacao = {
-    id: '05',
-    dataEHora: '18:30',
-    valor: 1.5,
-    tipo: 'debito',
-    contaId: '000092-6'
+  constructor(private route: ActivatedRoute, private homeService: HomeService){}
+
+  ngOnInit(): void {
+    const id: string = this.route.snapshot.paramMap.get('id')!;
+    this.getCliente(id);
+    this.getConta(id);
   }
 
-  getTransacoes(): void {
-    let updatedTransacoes: Transacao[] = [];
-    let transacao: Transacao = {
-      id: '05',
-      dataEHora: '18:30',
-      valor: 1.5,
-      tipo: 'debito',
-      contaId: '000092-6'
-    };
-
-    updatedTransacoes.push(transacao);
-    try {
-      // transacoesService.getTransacoes(cliente.id).then(transacoes) => {
-      //   updatedTransacoes = transacoes;
-      // }
-      //this.transacoes = updatedTransacoes;
-    } catch(error: any) {
-      //this.transacoes = [];
-      console.log(error.message);
-    }
+  getCliente(id: string){
+    this.homeService.findClienteByClientId(id).subscribe(response => {
+      this.cliente = response;
+    });
   }
 
-  // transacoes = new MatTableDataSource<Transacao>();
+  getConta(id: string){
+    this.homeService.findContaByClientId(id).subscribe(response => {
+      this.conta = response;
+
+      if (response.clienteId) {
+        this.getTransacoes(response.clienteId);
+      } else {
+        console.error('clienteId não encontrado na resposta da conta.');
+      }
+      this.getTransacoes(response.clienteId);
+    });
+  }
+
+  getTransacoes(id: string) {
+    this.homeService.findMiniTrasacoes(id).subscribe({
+      next: (response) => {
+        this.transacoes = response || [];
+      },
+      error: (e) => {
+        console.error('Erro ao carregar transações:', e);
+        this.transacoes = [];
+      },
+    });
+  }
 
   displayedColumns: string[] = ['id', 'dataEHora', 'valor', 'tipo'];
 
@@ -71,10 +85,9 @@ export class HomeComponent {
   }
   creditVisible: boolean = false;
   debitVisible: boolean = false;
-  valorDebito: number = 0;
-  valorCredito: number = 0;
+  valor!: number;
 
-  debitar() {
+  showDebit() {
     if (this.debitVisible) {
       this.debitVisible = false;
     } else {
@@ -82,7 +95,22 @@ export class HomeComponent {
       this.creditVisible = false;
     }
   }
+
   creditar() {
+    this.homeService.creditar(this.conta.id,this.valor).subscribe(response => {
+      console.log("CREDITOOO "+response);
+      this.getConta(this.cliente.id.toString());
+    });
+  }
+
+  debitar() {
+    this.homeService.debitar(this.conta.id,this.valor).subscribe(response => {
+      console.log("DEBITOOO "+response);
+      this.getConta(this.cliente.id.toString());
+    });
+  }
+
+  showCredit() {
     if (this.creditVisible) {
       this.creditVisible = false;
     } else {

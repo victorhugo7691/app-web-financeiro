@@ -12,7 +12,7 @@ import com.appweb.financeiro.banco.postgredb.service.interfaces.ICadastroService
 
 import jakarta.validation.Valid;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/cadastro")
 public class CadastroController {

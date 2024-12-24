@@ -1,6 +1,5 @@
 package com.appweb.financeiro.banco.postgredb.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.appweb.financeiro.banco.exceptions.FalhaNaAtividadeException;
@@ -26,14 +25,14 @@ public class CadastroService implements ICadastroService {
 
 	private ISenhaDoUsuarioRepository senhaRepository;
 
-	private final PasswordEncoder passwordEncoder;
+	//private final PasswordEncoder passwordEncoder;
 
 	public CadastroService(IClienteService clienteService, IContaService contaService,
-			ISenhaDoUsuarioRepository senhaRepository, PasswordEncoder passwordEncoder) {
+			ISenhaDoUsuarioRepository senhaRepository) {
 		this.clienteService = clienteService;
 		this.contaService = contaService;
 		this.senhaRepository = senhaRepository;
-		this.passwordEncoder = passwordEncoder;
+		//this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class CadastroService implements ICadastroService {
 	public void cadastrarSenha(Conta conta, String senha) {
 		SenhaDoUsuario novaSenha = new SenhaDoUsuario();
 		novaSenha.setConta(conta);
-		novaSenha.setSenha(this.passwordEncoder.encode(senha));
+		novaSenha.setSenha(senha);
 
 		try {
 			this.senhaRepository.save(novaSenha);

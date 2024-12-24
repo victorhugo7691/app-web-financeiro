@@ -1,4 +1,5 @@
 <section>
+  <button mat-flat-button id="btn-voltar"routerLink="/login">Voltar</button>
   <h1>Cadastro</h1>
   <form (ngSubmit)="onSubmit()" #form="ngForm">
     <mat-form-field>
@@ -14,10 +15,12 @@
         [(ngModel)]="cadastro.nomeDoCliente"
       />
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Digite sua idade</mat-label>
       <input type="number" matInput placeholder="idade" name="idade" required id="idade" [(ngModel)]="cadastro.idade"/>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Escreva seu email</mat-label>
         <input
@@ -31,6 +34,7 @@
           [(ngModel)]="cadastro.email"
         />
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Digite nº de conta</mat-label>
         <input
@@ -43,6 +47,7 @@
           [(ngModel)]="cadastro.numeroDaConta"
         />
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Escreva a senha</mat-label>
         <input

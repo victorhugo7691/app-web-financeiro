@@ -3,7 +3,9 @@ section {
     width: 80%;
     max-width: 1920px;
     min-width: 300px;
-    margin: auto;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 15px;
     background-color: white;
     h1 {
@@ -39,4 +41,8 @@ li {
 table {
     width: 60%;
     margin: auto;
+}
+
+#vazio{
+  color:brown
 }

@@ -1,21 +1,50 @@
 import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { Transacao } from '../../models/transacao';
-import {RouterLink} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../../auth.interceptor';
+import { ExtratoService } from '../../services/extrato.service';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-extrato',
   standalone: true,
-  imports: [MatTableModule, RouterLink, MatButtonModule],
+  imports: [MatTableModule, RouterLink, MatButtonModule, MatCardModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   templateUrl: './extrato.component.html',
   styleUrl: './extrato.component.css'
 })
 export class ExtratoComponent {
-  transacoes: Transacao[] = [
-    {id: '01', dataEHora: '10:30', valor: 10.0, tipo: 'credito', contaId: '000092-6'},
-    {id: '02', dataEHora: '12:30', valor: 5.0, tipo: 'debito', contaId: '000092-6'},
-    {id: '03', dataEHora: '15:30', valor: 2.0, tipo: 'debito', contaId: '000092-6'},
-    {id: '04', dataEHora: '16:30', valor: 3.0, tipo: 'credito', contaId: '000092-6'}
-  ];
+  transacoes!: Transacao[];
   displayedColumns: string[] = ['id', 'dataEHora', 'valor', 'tipo'];
+  contaId!: string;
+  clienteId!: string;
+  saldo!: number;
+
+  constructor(private route: ActivatedRoute, private extratoService: ExtratoService){}
+
+  ngOnInit(): void{
+    this.contaId = this.route.snapshot.paramMap.get('id')!;
+    this.clienteId = this.route.snapshot.paramMap.get('cliente')!;
+    this.getExtrato(this.contaId);
+    this.getConta(this.contaId);
+  }
+
+  getExtrato(id: string){
+    this.extratoService.findTrasacoes(id).subscribe((response: Transacao[]) => {
+      this.transacoes = response;
+    });
+  }
+
+  getConta(id: string){
+    this.extratoService.getConta(id).subscribe(response => {
+      this.saldo = response.saldo;
+    });
+  }
 }

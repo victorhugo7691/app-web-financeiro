@@ -11,5 +11,5 @@ import com.appweb.financeiro.banco.postgredb.entity.Conta;
 public interface IContaRepository extends JpaRepository<Conta, UUID> {
 	@Query(value = " SELECT * FROM conta "
 			+ "		 WHERE cliente_id = :id", nativeQuery = true )
-	public Conta findContaByClienteId(@Param("id") Integer id);
+	public Conta findContaByClienteId(@Param("id") UUID id);
 }

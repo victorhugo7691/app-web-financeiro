@@ -1,6 +1,5 @@
 package com.appweb.financeiro.banco.postgredb.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.appweb.financeiro.banco.exceptions.DadosNaoEncontradosException;
@@ -16,29 +15,28 @@ public class LoginService implements ILoginService {
 
 	private ISenhaDoUsuarioRepository senhaRepository;
 
-	private final PasswordEncoder passwordEncoder;
+	// private final PasswordEncoder passwordEncoder;
 
-	public LoginService(ISenhaDoUsuarioRepository senhaRepository, PasswordEncoder passwordEncoder) {
+	public LoginService(ISenhaDoUsuarioRepository senhaRepository) {
 		this.senhaRepository = senhaRepository;
-		this.passwordEncoder = passwordEncoder;
+		// this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
 	public ContaDTO realizarLogin(LoginInputDTO login) {
 		SenhaDoUsuario senha = this.senhaRepository.findSenhaByConta(login.numeroDaConta());
 		ContaDTO contaDeLogin = null;
-		
-		if(senha == null) {
+
+		if (senha == null) {
 			throw new DadosNaoEncontradosException("Verifique as informações de login!");
 		}
-		
-		if (this.passwordEncoder.matches(login.senha(), senha.getSenha())) {
+
+		if (login.senha().equals(senha.getSenha())) {
 			Conta conta = senha.getConta();
 
-			contaDeLogin =  new ContaDTO(conta.getNumeroDaConta(), conta.getSituacao().getDescricao(), conta.getSaldo(),
-					conta.getId().toString());
+			contaDeLogin = new ContaDTO(conta);
 		}
-		
+
 		return contaDeLogin;
 	}
 }

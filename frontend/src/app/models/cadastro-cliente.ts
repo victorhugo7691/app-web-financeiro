@@ -1,7 +1,7 @@
 export interface CadastroCliente {
   nomeDoCliente: string;
-  idade: number;
+  idade: number | null;
   email: string;
-  numeroDaConta: number;
+  numeroDaConta: number | null;
   senha: string
 }

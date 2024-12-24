@@ -1,4 +1,4 @@
 export interface Login {
-  numeroDaConta: number,
+  numeroDaConta: number | null,
   senha: string
 }

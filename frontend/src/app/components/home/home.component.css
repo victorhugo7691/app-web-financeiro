@@ -95,6 +95,9 @@ mat-slide-toggle{
 #extratoFull {
   float: right;
   margin-top: 20px;
+  background-color: #005cbb;
+  color: white;
+  border-radius: 20px;
 }
 .secaoCredito {
   margin-top: 20px;

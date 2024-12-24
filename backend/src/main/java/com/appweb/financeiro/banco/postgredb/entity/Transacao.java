@@ -71,4 +71,12 @@ public class Transacao implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
 }

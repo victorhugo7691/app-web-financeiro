@@ -4,8 +4,10 @@
 
     <mat-card class="card-informacoes">
       <mat-card-header>
-        <mat-card-title class="nome">Olá </mat-card-title>
-        <!--<p>{{ cliente.nome }}</p>-->
+
+        <mat-card-title class="nome">Olá @if (cliente) {
+          {{ cliente.nome }}
+        }  </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-card-content>
@@ -16,29 +18,31 @@
             <mat-card-content>
               <p>Realize já uma atividade</p>
               <div class="botoes-funcionalidades">
-                <button mat-flat-button (click)="debitar()" class="transacaoButton">Débito</button>
-                <button mat-flat-button class="transacaoButton" (click)="creditar()" >Crédito</button>
+                <button mat-flat-button (click)="showDebit()" class="transacaoButton">Débito</button>
+                <button mat-flat-button class="transacaoButton" (click)="showCredit()" >Crédito</button>
               </div>
             </mat-card-content>
+
             @if (debitVisible) {
               <section class="secaoDebito">
                 <form>
                   <mat-form-field>
                     <mat-label>Valor</mat-label>
-                    <input matInput type="number" name="debitValue" [(ngModel)]="valorDebito">
+                    <input matInput type="number" name="debitValue" [(ngModel)]="valor">
                   </mat-form-field>
-                  <button type="submit" mat-flat-button>Debitar</button>
+                  <button type="submit" mat-flat-button (click)="debitar()">Debitar</button>
                 </form>
               </section>
             }
+
             @if (creditVisible) {
               <section class="secaoCredito">
                 <form>
                   <mat-form-field>
                     <mat-label>Valor</mat-label>
-                    <input matInput type="number" name="creditValue" [(ngModel)]="valorCredito">
+                    <input matInput type="number" name="creditValue" [(ngModel)]="valor">
                   </mat-form-field>
-                  <button type="submit" mat-flat-button>Creditar</button>
+                  <button type="submit" mat-flat-button (click)="creditar()">Creditar</button>
                 </form>
               </section>
             }
@@ -47,6 +51,7 @@
         </mat-card-content>
       </mat-card-content>
     </mat-card>
+
     <mat-card class="card-saldo">
       <mat-card-header>
         <mat-slide-toggle color="blue" [(ngModel)]="isOculto">Ocultar dados</mat-slide-toggle>
@@ -54,7 +59,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <h3>R$ {{ saldo }}</h3>
+        <h3>R$ {{ isOculto ? '******' : conta.saldo }}</h3>
 
         <p>Previa de transações realizadas</p>
         <table mat-table [dataSource]="transacoes">
@@ -81,17 +86,10 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <button mat-flat-button id="extratoFull" routerLink="/extrato" >Extrato Completo</button>
+        <button mat-flat-button id="extratoFull" [routerLink]="['/extrato', conta.id , cliente.id]" > Extrato Completo </button>
       </mat-card-content>
 
     </mat-card>
   </div>
 
-  <!-- Botões de Ação -->
- <!-- <div class="actionsy">
-    <button mat-raised-button color="primary" (click)="verExtrato()">Extrato Bancário</button>
-    <button mat-raised-button color="accent" (click)="realizarCredito()">Crédito</button>
-    <button mat-raised-button color="warn" (click)="realizarDebito()">Débito</button>
-  </div>
-  -->
 </div>

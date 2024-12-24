@@ -8,7 +8,7 @@ import com.appweb.financeiro.banco.postgredb.entity.Cliente;
 @Service
 public interface IClienteService {
 
-	public ClienteDTO findClienteById(Integer id);
+	public ClienteDTO findClienteById(String id);
 
 	public Cliente save(Cliente cliente);
 }

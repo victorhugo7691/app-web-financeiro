@@ -11,15 +11,23 @@ import {MatInputModule} from '@angular/material/input';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MatCardModule, MatButtonModule, RouterLink, MatFormFieldModule, MatInputModule],
+  imports: [
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    RouterLink,
+    MatFormFieldModule,
+    MatInputModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   user: Login = {
-    numeroDaConta: 0,
+    numeroDaConta: null,
     senha: ''
   }
+
+  clienteId!: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -28,8 +36,10 @@ export class LoginComponent {
     try {
       this.authService.login(this.user).subscribe({
         next: (response: Conta) => { // Especifica o tipo de resposta como Conta
+          localStorage.removeItem('clienteId');
           localStorage.setItem('clienteId', response.clienteId.toString()); // Armazena o clienteId no localStorage
-          this.router.navigate(['/home']); // Redireciona para a página home
+          this.clienteId = response.clienteId;
+          this.router.navigate(['/home', response.clienteId]); // Redireciona para a página home
         }
       });
 

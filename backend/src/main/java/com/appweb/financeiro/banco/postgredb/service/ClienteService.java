@@ -22,7 +22,7 @@ public class ClienteService implements IClienteService{
 	}
 
 	@Override
-	public ClienteDTO findClienteById(Integer id) {
+	public ClienteDTO findClienteById(String id) {
 		Cliente cliente = this.clienteRepository.findById(UUID.fromString(id.toString())).orElse(null);
 
 		return new ClienteDTO(cliente.getId().toString(), cliente.getNome(), cliente.getIdade(), cliente.getEmail());
