@@ -62,7 +62,7 @@ public class HomeController {
 	public ResponseEntity<List<TransacaoDTO>> findMiniTrasacoes(@PathVariable String id) {
 		List<TransacaoDTO> transacoes = this.transacaoService.findMiniTransacoesByContaId(id);
 
-		if (transacoes == null) {
+		if (transacoes.isEmpty()) {
 			ResponseEntity.noContent().build();
 		}
 

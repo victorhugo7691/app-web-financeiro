@@ -13,12 +13,12 @@ public interface ITransacaoRepository extends JpaRepository<Transacao, UUID> {
 	
 	@Query(value = " SELECT t.* FROM transacao t     "
 			+ "		 	WHERE t.conta_id = :contaId "
-			+ "		 ORDER BY t.dataehora ASC;      ", nativeQuery = true)
+			+ "		 ORDER BY t.dataehora DESC;      ", nativeQuery = true)
 	public List<Transacao> findTransacoesByContaId(@Param("contaId") UUID contaId);
 	
 	@Query(value = " SELECT t.* FROM transacao t     "
 			+ "		 	WHERE t.conta_id = :contaId "
-			+ "		 ORDER BY t.dataehora ASC       "
+			+ "		 ORDER BY t.dataehora DESC       "
 			+ "		 LIMIT 5;                       ", nativeQuery = true)
 	public List<Transacao> findMiniTransacoesByContaId(@Param("contaId") UUID contaId);
 

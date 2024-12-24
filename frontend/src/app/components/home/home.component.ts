@@ -30,7 +30,6 @@ import { AuthInterceptor } from '../../auth.interceptor';
 })
 export class HomeComponent {
   transacoes!: Transacao[];
-
   saldo: number = 0;
   isOculto: boolean = true;
   cliente!: Cliente;
@@ -53,29 +52,17 @@ export class HomeComponent {
   getConta(id: string){
     this.homeService.findContaByClientId(id).subscribe(response => {
       this.conta = response;
-
-      if (response.clienteId) {
-        this.getTransacoes(response.clienteId);
-      } else {
-        console.error('clienteId não encontrado na resposta da conta.');
-      }
-      this.getTransacoes(response.clienteId);
+      this.getMiniTransacoes();
     });
   }
 
-  getTransacoes(id: string) {
-    this.homeService.findMiniTrasacoes(id).subscribe({
-      next: (response) => {
-        this.transacoes = response || [];
-      },
-      error: (e) => {
-        console.error('Erro ao carregar transações:', e);
-        this.transacoes = [];
-      },
+  getMiniTransacoes(){
+    this.homeService.findMiniTrasacoes(this.conta.id).subscribe(response => {
+      this.transacoes = response;
     });
   }
 
-  displayedColumns: string[] = ['id', 'dataEHora', 'valor', 'tipo'];
+  displayedColumns: string[] = ['dataEHora', 'valor', 'tipo'];
 
   Column = {
     id: "",
@@ -98,15 +85,15 @@ export class HomeComponent {
 
   creditar() {
     this.homeService.creditar(this.conta.id,this.valor).subscribe(response => {
-      console.log("CREDITOOO "+response);
       this.getConta(this.cliente.id.toString());
+      this.getMiniTransacoes();
     });
   }
 
   debitar() {
     this.homeService.debitar(this.conta.id,this.valor).subscribe(response => {
-      console.log("DEBITOOO "+response);
       this.getConta(this.cliente.id.toString());
+      this.getMiniTransacoes();
     });
   }
 

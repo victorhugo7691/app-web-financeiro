@@ -34,7 +34,6 @@ export class HomeService {
   findMiniTrasacoes(id: string): Observable<Transacao[]> {
     const url = `${this.baseUrl}/mini-extrato/${id}`;
     return this.http.get<Transacao[]>(url).pipe(
-      map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
   }
