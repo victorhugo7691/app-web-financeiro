@@ -30,9 +30,9 @@ export class ExtratoComponent {
   contaId!: string;
   clienteId!: string;
   saldo!: number;
-  dataSource!: MatTableDataSource<Transacao>;  // Usando MatTableDataSource
+  dataSource!: MatTableDataSource<Transacao>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;  // Referência do MatPaginator
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute, private extratoService: ExtratoService) {}
 
