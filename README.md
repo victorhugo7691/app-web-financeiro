@@ -24,3 +24,10 @@ Imagens do sistema:
 <img src="./img/6.png">
 <img src="./img/7.png">
 <img src="./img/8.png">
+
+Imagens do ambiente cloud, e serviços que provisionam a instância do banco de dados, o web service com o back-end e o static site do front-end.
+
+<img src="./img/9.png">
+<img src="./img/10.png">
+<img src="./img/11.png">
+<img src="./img/12.png">

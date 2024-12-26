@@ -13,7 +13,8 @@ public class WebConfig implements WebMvcConfigurer {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/**").allowedOrigins("https://app-web-financeiro-frontend.onrender.com")
+				registry.addMapping("/api/**")
+						.allowedOrigins("https://app-web-financeiro-frontend.onrender.com", "http://localhost:4200")
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*")
 						.allowCredentials(false);
 			}
