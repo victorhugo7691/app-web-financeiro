@@ -17,6 +17,10 @@ Diagrama de classes
 
 <img src="./img/uml_financeiro.svg">
 
+Diagrama de arquitetura da aplicação
+
+<img src="./img/Arquitetura.png">
+
 Imagens do sistema:
 <img src="./img/1.png">
 <img src="./img/2.png">
