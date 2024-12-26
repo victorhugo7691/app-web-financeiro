@@ -14,7 +14,7 @@ import com.appweb.financeiro.banco.postgredb.service.interfaces.ILoginService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://app-web-financeiro-frontend.onrender.com")
 @RestController
 @RequestMapping("/login")
 public class LoginController {

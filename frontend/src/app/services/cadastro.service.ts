@@ -8,7 +8,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class CadastroService {
 
-  baseUrl = "http://localhost:8081/api/cadastro";
+  baseUrl = "https://app-web-financeiro.onrender.com/api/cadastro";
 
   constructor(private http: HttpClient) { }
 

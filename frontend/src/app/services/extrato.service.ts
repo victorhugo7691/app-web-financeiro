@@ -9,7 +9,7 @@ import { Conta } from '../models/conta';
 })
 export class ExtratoService {
 
-  baseUrl = "http://localhost:8081/api/extrato";
+  baseUrl = "https://app-web-financeiro.onrender.com/api/extrato";
 
   constructor(private http: HttpClient) { }
 
