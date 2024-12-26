@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { Conta } from '../models/conta';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'https://app-web-financeiro.onrender.com/api'; // URL do backend para login
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

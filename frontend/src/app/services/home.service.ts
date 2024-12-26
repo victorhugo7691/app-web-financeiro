@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { Cliente } from '../models/cliente';
 import { Transacao } from '../models/transacao';
 import { lastValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class HomeService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  baseUrl = "https://app-web-financeiro.onrender.com/api/home";
+  private baseUrl = environment.apiUrl + "/home";
 
   findContaByClientId(id: string): Observable<Conta> {
     const url = `${this.baseUrl}/conta/${id}`;

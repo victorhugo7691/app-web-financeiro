@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Transacao } from '../models/transacao';
 import { Conta } from '../models/conta';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtratoService {
 
-  baseUrl = "https://app-web-financeiro.onrender.com/api/extrato";
+  private baseUrl = environment.apiUrl + "/extrato";
 
   constructor(private http: HttpClient) { }
 

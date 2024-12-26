@@ -3,6 +3,7 @@ package com.appweb.financeiro.banco.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.appweb.financeiro.banco.postgredb.dto.output.TransacaoDTO;
 import com.appweb.financeiro.banco.postgredb.service.interfaces.IContaService;
 import com.appweb.financeiro.banco.postgredb.service.interfaces.ITransacaoService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/extrato")
 public class ExtratoController {
